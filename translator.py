@@ -5,17 +5,17 @@ apikey = 'bGO1KPq1Kc6SPre0elQjbfHCcIzbwSCHUhcenyxZ7Tpw'
 url = 'https://api.au-syd.language-translator.watson.cloud.ibm.com/instances/920e3270-8604-470c-b798-9111066581aa'
 
 authenticator = IAMAuthenticator(apikey)
-lt = LanguageTranslatorV3(
+language_translator = LanguageTranslatorV3(
     version='2018-05-01',
     authenticator=authenticator
 )
 
-lt.set_service_url(url)
+language_translator.set_service_url(url)
 
 def english_to_french(text):
-    translation = lt.translate(text=text, source='en', target='fr').get_result()
-    return translation['translations'][0]['translation']
+    ftranslation = language_translator.translate(text=text1,model_id='en-fr').get_result()
+    return ftranslation['translations'][0].get('translation')
 
 def french_to_english(text):
-    translation = lt.translate(text=text, source='fr', target='en').get_result()
-    return translation['translations'][0]['translation']
+    etranslation = language_translator.translate(text=text1,model_id='fr-en').get_result()
+    return etranslation['translations'][0].get('translation')
